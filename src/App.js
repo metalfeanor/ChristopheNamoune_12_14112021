@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { MockedProvider } from "./utils/contexts/MockedContext";
+import UserPage from "./page/UserPage";
+import Home from "./page/Home";
+import GlobalStyle from "./utils/style/GlobalStyle";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <MockedProvider>
+        <div className="App">
+          <GlobalStyle />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/user/:id" element={<UserPage />} />
+            {/*<Route path="/about">
+              <About />
+            </Route>
+            <Route path="/location/:id" component={LocationInfo}></Route>
+            <Route exact path="*">
+              <Error />
+        </Route>*/}
+          </Routes>
+        </div>
+      </MockedProvider>
+    </BrowserRouter>
   );
 }
-
-export default App;

@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# OPENCLASSROOMS PROJECT 12
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Build an athletic user profile page in React, fetching data from a NodeJS server.
 
-## Available Scripts
+## Dependencies
 
-In the project directory, you can run:
+- [React](https://reactjs.org/) v17.0.2
 
-### `yarn start`
+- [recharts](https://recharts.org/en-US) v2.1.6
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [react-router-dom](https://reactrouter.com/web/guides/quick-start) v6.0.2
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [styled-components](https://styled-components.com/) v5.3.3
 
-### `yarn test`
+- [prop-types](https://www.npmjs.com/package/prop-types) v15.7.2
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Recommended text editor: [Visual Studio Code](https://code.visualstudio.com/)
 
-### `yarn build`
+## Installation Dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- You need [Git](https://git-scm.com/) to clone the repository
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- You need [Node](https://nodejs.org/en/) (v14.17.1) to run the `npm` commands
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Or You can use [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable) to run `yarn` commands
 
-### `yarn eject`
+## Install and run the project
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Clone the project to your computer
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`git clone https://github.com/metalfeanor/ChristopheNamoune_12_14112021.git`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Go to the project folder
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`cd maevanguyenanhphuong_12_27012021`
 
-## Learn More
+- Install the packages
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`npm i` or `yarn`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Run the project (port 3000 by default)
 
-### Code Splitting
+`npm start-all` or `yarn start-all`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- To get information about the backend API, go to the link below
 
-### Analyzing the Bundle Size
+[Backend API](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Once the project is running :
 
-### Making a Progressive Web App
+  - You can choose user by clicking on Name button
+  - And you can choose Mocked ou Fetched Data
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  <img src='src/assets/screenshot.png' width="100">
