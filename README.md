@@ -32,7 +32,7 @@ Build an athletic user profile page in React, fetching data from a NodeJS server
 
 - Go to the project folder
 
-`cd maevanguyenanhphuong_12_27012021`
+`cd ChristopheNamoune_12_14112021`
 
 - Install the packages
 

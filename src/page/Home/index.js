@@ -49,7 +49,7 @@ function Home() {
   const { isDataMocked, setIsDataMocked } = useContext(MockedContext);
   console.log(isDataMocked);
 
-  const size = "150px";
+  const size = "300px";
   return (
     <HomeWrapper>
       <LeftCol>
