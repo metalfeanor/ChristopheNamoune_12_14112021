@@ -37,6 +37,12 @@ const CustomTooltipContainer = styled.div`
 export default function Line_Chart({ userSessions }) {
   const { sessions } = userSessions;
 
+  /**
+   * Convert day from number to letter for LineChart
+   * 1 equal to L (Lundi), etc
+   * @param {Array} sessions
+   * @returns {Array}
+   */
   const getOrganizedDataLineChart = (sessions) => {
     if (!sessions) {
       sessions = {};
@@ -68,7 +74,7 @@ export default function Line_Chart({ userSessions }) {
 
   if (sessions) {
     sessionArray = sessions.map((item) => item.sessionLength);
-    minY = Math.min(...sessionArray) / 2;
+    minY = Math.min(...sessionArray) / 2 - 2;
     maxY = Math.max(...sessionArray) * 2;
   }
   const CustomTooltip = ({ active, payload }) => {
@@ -77,7 +83,7 @@ export default function Line_Chart({ userSessions }) {
     }
     return null;
   };
-
+  console.log(minY);
   return (
     <LineChartContainer>
       <LineChartHeader>
@@ -100,7 +106,7 @@ export default function Line_Chart({ userSessions }) {
             <YAxis hide={true} domain={[minY, maxY]} />
             <Tooltip content={<CustomTooltip />} cursor={false} />
             <Line
-              type="monotone"
+              type="natural"
               dataKey="sessionLength"
               stroke="#fff"
               strokeWidth={2}

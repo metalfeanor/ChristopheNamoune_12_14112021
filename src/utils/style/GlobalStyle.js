@@ -54,8 +54,8 @@ export const Loader = styled.div`
   padding: 10px;
   border: 6px solid #ff0101;
   border-bottom-color: transparent;
-  border-radius: 22px;
+  border-radius: 100px;
   animation: ${rotate} 1s infinite linear;
-  height: 0;
-  width: 0;
+  height: 100px;
+  width: 100px;
 `;

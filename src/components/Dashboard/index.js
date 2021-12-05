@@ -7,7 +7,6 @@ import apple from "../../assets/apple.png";
 import fire from "../../assets/fire.png";
 import chicken from "../../assets/chicken.png";
 import cheeseburger from "../../assets/cheeseburger.png";
-//import { getUserActivities, getUserInfo, getUserPerformance, getUserSessions } from "../../service/service";
 
 import styled from "styled-components";
 import KPIChart from "../KPIChart";
@@ -53,6 +52,17 @@ const MainContainer = styled.div`
     }
   }
 `;
+const CenterContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 126vh;
+  @media screen and (min-width: 1350px) {
+    height: 70vh;
+  }
+`;
+
 const Name = styled.span`
   color: #ff0000;
 `;
@@ -64,7 +74,7 @@ export default function Dashboard() {
   const [userSession, setUserSession] = useState({});
   const [userActivity, setUserActivity] = useState({});
 
-  const [isDataLoading, setDataLoading] = useState(false);
+  const [isDataLoading, setDataLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const { id } = useParams();
@@ -73,23 +83,19 @@ export default function Dashboard() {
     async function getAllData() {
       setDataLoading(true);
       try {
-        fetchAllApiData(id, isDataMocked).then(
-          isDataMocked
-            ? ([userInfoDataMocked, userPerformanceDataMocked, userActivityDataMocked, userSessionDataMocked]) => {
-                //console.log(userInfoDataMocked, userPerformanceDataMocked, userActivityDataMocked, userSessionDataMocked);
-                setUserData(userInfoDataMocked);
-                setUserDataPerf(userPerformanceDataMocked);
-                setUserActivity(userActivityDataMocked);
-                setUserSession(userSessionDataMocked);
-              }
-            : ([userInfoDataFetched, userPerformanceDataFetched, userActivityDataFetched, userSessionDataFetched]) => {
-                //console.log(userInfoDataFetched.data, userPerformanceDataFetched.data, userActivityDataFetched.data, userSessionDataFetched.data);
-                setUserData(userInfoDataFetched.data);
-                setUserDataPerf(userPerformanceDataFetched.data);
-                setUserActivity(userActivityDataFetched.data);
-                setUserSession(userSessionDataFetched.data);
-              }
-        );
+        const response = await fetchAllApiData(id, isDataMocked);
+        const [userInfoData, userPerformanceData, userActivityData, userSessionData] = response;
+        if (isDataMocked) {
+          setUserData(userInfoData);
+          setUserDataPerf(userPerformanceData);
+          setUserActivity(userActivityData);
+          setUserSession(userSessionData);
+        } else {
+          setUserData(userInfoData.data);
+          setUserDataPerf(userPerformanceData.data);
+          setUserActivity(userActivityData.data);
+          setUserSession(userSessionData.data);
+        }
       } catch (err) {
         console.log(err);
         setError(true);
@@ -98,40 +104,22 @@ export default function Dashboard() {
       }
     }
     getAllData();
-    /*getUserInfo(id, isDataMocked).then((data) => {
-        !data ? setDataLoading(true) : setUserData(data.data);
-      });
-      getUserPerformance(id, isDataMocked).then((data) => {
-        !data ? setDataLoading(true) : setUserDataPerf(data.data);
-      });
-      getUserActivities(id, isDataMocked).then((data) => {
-        !data ? setDataLoading(true) : setUserActivity(data.data);
-      });
-      getUserSessions(id, isDataMocked).then((data) => {
-        !data ? setDataLoading(true) : setUserSession(data.data);
-      });*/
   }, [id, isDataMocked]);
-
-  // const userRes = (id) => {
-  //   getUserInfo(id, isDataMocked).then((user) => {
-  //     setUserData(user);
-  //   });
-  // };
-  // userRes(id);
-  /*let firstName = "";
-  userData.userInfos ? (firstName = userData.userInfos.firstName) : (firstName = "");*/
 
   //console.log(isDataMocked, id, userData, userDataPerf, isDataLoading, userActivity, userSession);
   //console.log(userActivity, userDataPerf);
 
   if (error) {
-    return <span>Oups il y a eu un problème</span>;
+    return <CenterContainer>Oups il y a eu un problème !</CenterContainer>;
   }
+  //console.log(isDataLoading);
 
   return (
     <div>
       {isDataLoading ? (
-        <Loader />
+        <CenterContainer>
+          <Loader />
+        </CenterContainer>
       ) : (
         <DashboardContainer>
           <Header>

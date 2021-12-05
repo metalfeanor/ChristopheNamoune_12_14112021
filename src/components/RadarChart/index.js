@@ -11,7 +11,6 @@ const RadarContainer = styled.div`
 
 export default function ChartRadar({ performance }) {
   const { kind, data } = performance;
-  //console.log(kind, data);
 
   const getOrganizedDataForRadarChart = (data, kind) => {
     if (!data) {

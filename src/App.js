@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MockedProvider } from "./utils/contexts/MockedContext";
 import UserPage from "./page/UserPage";
 import Home from "./page/Home";
+import Error from "./page/ErrorPage";
 import GlobalStyle from "./utils/style/GlobalStyle";
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/user/:id" element={<UserPage />} />
+            <Route path="*" element={<Error />} />
             {/*<Route path="/about">
               <About />
             </Route>

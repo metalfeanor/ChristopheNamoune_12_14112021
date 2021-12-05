@@ -24,6 +24,11 @@ export default function KPIChart({ kpi }) {
   const score = kpi.score;
   const data = [{ value: todayScore || score }, { value: 1 - todayScore || 1 - score }];
 
+  /**
+   * Modify position of data to display
+   * @param {*} props
+   * @returns
+   */
   const CustomizedLabel = (props) => {
     const { value, viewBox } = props;
     const { cx, cy } = viewBox;

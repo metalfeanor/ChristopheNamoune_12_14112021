@@ -47,7 +47,7 @@ const DataModeButton = styled.button`
 
 function Home() {
   const { isDataMocked, setIsDataMocked } = useContext(MockedContext);
-  console.log(isDataMocked);
+  console.log("DataMocked ? : ", isDataMocked);
 
   const size = "300px";
   return (
