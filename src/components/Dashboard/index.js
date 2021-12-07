@@ -104,15 +104,12 @@ export default function Dashboard() {
       }
     }
     getAllData();
-  }, [id, isDataMocked]);
-
-  //console.log(isDataMocked, id, userData, userDataPerf, isDataLoading, userActivity, userSession);
-  //console.log(userActivity, userDataPerf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (error) {
     return <CenterContainer>Oups il y a eu un problème !</CenterContainer>;
   }
-  //console.log(isDataLoading);
 
   return (
     <div>

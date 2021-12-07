@@ -82,9 +82,8 @@ export default function UserBarChart({ activity }) {
 
   useEffect(() => {
     getOrganizedDataBarChart(sessions);
-  });
-
-  console.log(sessions);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (sessions) {
     kilogramsArray = sessions.map((item) => item.kilogram);
@@ -96,6 +95,13 @@ export default function UserBarChart({ activity }) {
     maxYCal = Math.max(...caloriesArray) + 10;
   }
 
+  /**
+   * Custom Tooltip to display kg & kcal
+   * for each Bar into BarChart with same
+   * style from figma
+   * @param {*} param0
+   * @returns
+   */
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (

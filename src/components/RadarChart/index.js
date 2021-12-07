@@ -26,7 +26,8 @@ export default function ChartRadar({ performance }) {
 
   useEffect(() => {
     getOrganizedDataForRadarChart(data, kind);
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <RadarContainer>

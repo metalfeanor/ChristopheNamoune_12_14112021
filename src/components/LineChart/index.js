@@ -66,7 +66,8 @@ export default function Line_Chart({ userSessions }) {
 
   useEffect(() => {
     getOrganizedDataLineChart(sessions);
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   let sessionArray = [];
   let minY = 0;
@@ -83,7 +84,7 @@ export default function Line_Chart({ userSessions }) {
     }
     return null;
   };
-  console.log(minY);
+
   return (
     <LineChartContainer>
       <LineChartHeader>
