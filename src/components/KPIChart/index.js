@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { PieChart, Pie, Cell, ResponsiveContainer, Label } from "recharts";
+import PropTypes from "prop-types";
 
 const KpiContainer = styled.div`
   width: 258px;
@@ -20,9 +21,7 @@ const KpiHeader = styled.header`
 `;
 
 export default function KPIChart({ kpi }) {
-  const todayScore = kpi.todayScore;
-  const score = kpi.score;
-  const data = [{ value: todayScore || score }, { value: 1 - todayScore || 1 - score }];
+  const { data } = kpi;
 
   /**
    * Modify position of data to display
@@ -68,3 +67,13 @@ export default function KPIChart({ kpi }) {
     </KpiContainer>
   );
 }
+
+KPIChart.propTypes = {
+  kpi: PropTypes.shape({
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.number.isRequired,
+      })
+    ),
+  }),
+};

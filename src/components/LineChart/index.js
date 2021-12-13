@@ -1,6 +1,6 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import PropTypes from "prop-types";
 
 const LineChartContainer = styled.div`
   width: 258px;
@@ -35,49 +35,8 @@ const CustomTooltipContainer = styled.div`
 `;
 
 export default function Line_Chart({ userSessions }) {
-  const { sessions } = userSessions;
+  const { sessions, minY, maxY } = userSessions;
 
-  /**
-   * Convert day from number to letter for LineChart
-   * 1 equal to L (Lundi), etc
-   * @param {Array} sessions
-   * @returns {Array}
-   */
-  const getOrganizedDataLineChart = (sessions) => {
-    if (!sessions) {
-      sessions = {};
-      return sessions;
-    }
-    const day = {
-      1: "L",
-      2: "M",
-      3: "M",
-      4: "J",
-      5: "V",
-      6: "S",
-      7: "D",
-    };
-
-    for (let i = 0; i < sessions.length; i++) {
-      sessions[i].day = day[i + 1];
-    }
-    return sessions;
-  };
-
-  useEffect(() => {
-    getOrganizedDataLineChart(sessions);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  let sessionArray = [];
-  let minY = 0;
-  let maxY = 0;
-
-  if (sessions) {
-    sessionArray = sessions.map((item) => item.sessionLength);
-    minY = Math.min(...sessionArray) / 2 - 2;
-    maxY = Math.max(...sessionArray) * 2;
-  }
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return <CustomTooltipContainer>{`${payload[0].value} min`}</CustomTooltipContainer>;
@@ -124,3 +83,16 @@ export default function Line_Chart({ userSessions }) {
     </LineChartContainer>
   );
 }
+
+Line_Chart.propTypes = {
+  userSessions: PropTypes.shape({
+    sessions: PropTypes.arrayOf(
+      PropTypes.shape({
+        day: PropTypes.string.isRequired,
+        sessionLength: PropTypes.number.isRequired,
+      })
+    ),
+    minY: PropTypes.number.isRequired,
+    maxY: PropTypes.number.isRequired,
+  }),
+};

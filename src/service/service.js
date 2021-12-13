@@ -1,4 +1,8 @@
 import { USER_MAIN_DATA as users, USER_ACTIVITY as activities, USER_AVERAGE_SESSIONS as sessions, USER_PERFORMANCE as performances } from "../data";
+import { UserActivityFormatted } from "../models/userActivityModel";
+import { UserDataFormatted } from "../models/userDataModel";
+import { UserPerformanceFormatted } from "../models/userPerformanceModel";
+import { UserSessionFormatted } from "../models/userSessionModel";
 
 /**
  *  Fetch user Infos, Performance, Average Session and Activity
@@ -16,7 +20,12 @@ export async function fetchAllApiData(id, isMocked) {
     const userActivityDataMocked = activities.find((activity) => activity.userId === parseInt(id));
     const userSessionDataMocked = sessions.find((session) => session.userId === parseInt(id));
 
-    return [userInfoDataMocked, userPerformanceDataMocked, userActivityDataMocked, userSessionDataMocked];
+    return [
+      new UserDataFormatted(userInfoDataMocked).formatData(),
+      new UserPerformanceFormatted(userPerformanceDataMocked).formatData(),
+      new UserActivityFormatted(userActivityDataMocked).formatData(),
+      new UserSessionFormatted(userSessionDataMocked).formatData(),
+    ];
   }
 
   let userUrl = `http://localhost:3008/user/${id}`;
@@ -35,11 +44,13 @@ export async function fetchAllApiData(id, isMocked) {
     userActivityResponse.json(),
     userSessionResponse.json(),
   ]);
-  /*const userInfoDataFetched = await userInfoResponse.json();
-  const userPerformanceDataFetched = await userPerformanceResponse.json();
-  const userActivityDataFetched = await userActivityResponse.json();
-  const userSessionDataFetched = await userSessionResponse.json();*/
+
   console.log("fetched");
 
-  return [userInfoDataFetched, userPerformanceDataFetched, userActivityDataFetched, userSessionDataFetched];
+  return [
+    new UserDataFormatted(userInfoDataFetched.data).formatData(),
+    new UserPerformanceFormatted(userPerformanceDataFetched.data).formatData(),
+    new UserActivityFormatted(userActivityDataFetched.data).formatData(),
+    new UserSessionFormatted(userSessionDataFetched.data).formatData(),
+  ];
 }

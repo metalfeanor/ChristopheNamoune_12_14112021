@@ -15,13 +15,6 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/user/:id" element={<UserPage />} />
             <Route path="*" element={<Error />} />
-            {/*<Route path="/about">
-              <About />
-            </Route>
-            <Route path="/location/:id" component={LocationInfo}></Route>
-            <Route exact path="*">
-              <Error />
-        </Route>*/}
           </Routes>
         </div>
       </MockedProvider>

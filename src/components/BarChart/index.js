@@ -1,6 +1,6 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import PropTypes from "prop-types";
 
 const BarChartContainer = styled.div`
   background: #fbfbfb;
@@ -60,40 +60,7 @@ const StyledSpan = styled.span`
 `;
 
 export default function UserBarChart({ activity }) {
-  const { sessions } = activity;
-  let kilogramsArray = [];
-  let caloriesArray = [];
-  let minYKilo = 0;
-  let maxYKilo = 0;
-  let minYCal = 0;
-  let maxYCal = 0;
-
-  const getOrganizedDataBarChart = (sessions) => {
-    if (!sessions) {
-      sessions = {};
-      return sessions;
-    }
-
-    for (let i = 0; i < sessions.length; i++) {
-      sessions[i].day = i + 1;
-    }
-    return sessions;
-  };
-
-  useEffect(() => {
-    getOrganizedDataBarChart(sessions);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (sessions) {
-    kilogramsArray = sessions.map((item) => item.kilogram);
-    minYKilo = Math.min(...kilogramsArray) - 1;
-    maxYKilo = Math.max(...kilogramsArray) + 1;
-
-    caloriesArray = sessions.map((item) => item.calories);
-    minYCal = Math.min(...caloriesArray) - 10;
-    maxYCal = Math.max(...caloriesArray) + 10;
-  }
+  const { sessions, minYKilo, maxYKilo, minYCal, maxYCal } = activity;
 
   /**
    * Custom Tooltip to display kg & kcal
@@ -166,3 +133,19 @@ export default function UserBarChart({ activity }) {
     </BarChartContainer>
   );
 }
+
+UserBarChart.propTypes = {
+  activity: PropTypes.shape({
+    sessions: PropTypes.arrayOf(
+      PropTypes.shape({
+        day: PropTypes.number.isRequired,
+        kilogram: PropTypes.number.isRequired,
+        calories: PropTypes.number.isRequired,
+      })
+    ),
+    minYKilo: PropTypes.number.isRequired,
+    maxYKilo: PropTypes.number.isRequired,
+    minYCal: PropTypes.number.isRequired,
+    maxYCal: PropTypes.number.isRequired,
+  }),
+};

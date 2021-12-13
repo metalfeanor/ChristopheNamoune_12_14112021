@@ -91,10 +91,10 @@ export default function Dashboard() {
           setUserActivity(userActivityData);
           setUserSession(userSessionData);
         } else {
-          setUserData(userInfoData.data);
-          setUserDataPerf(userPerformanceData.data);
-          setUserActivity(userActivityData.data);
-          setUserSession(userSessionData.data);
+          setUserData(userInfoData);
+          setUserDataPerf(userPerformanceData);
+          setUserActivity(userActivityData);
+          setUserSession(userSessionData);
         }
       } catch (err) {
         console.log(err);
@@ -110,7 +110,6 @@ export default function Dashboard() {
   if (error) {
     return <CenterContainer>Oups il y a eu un problème !</CenterContainer>;
   }
-
   return (
     <div>
       {isDataLoading ? (

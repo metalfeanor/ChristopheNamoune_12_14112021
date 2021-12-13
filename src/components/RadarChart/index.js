@@ -1,6 +1,6 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from "recharts";
+import PropTypes from "prop-types";
 
 const RadarContainer = styled.div`
   width: 258px;
@@ -10,24 +10,7 @@ const RadarContainer = styled.div`
 `;
 
 export default function ChartRadar({ performance }) {
-  const { kind, data } = performance;
-
-  const getOrganizedDataForRadarChart = (data, kind) => {
-    if (!data) {
-      data = {};
-      return data;
-    }
-
-    for (let i = 0; i < data.length; i++) {
-      data[i].kind = kind[i + 1];
-    }
-    return data;
-  };
-
-  useEffect(() => {
-    getOrganizedDataForRadarChart(data, kind);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { data } = performance;
 
   return (
     <RadarContainer>
@@ -43,3 +26,14 @@ export default function ChartRadar({ performance }) {
     </RadarContainer>
   );
 }
+
+ChartRadar.propTypes = {
+  performance: PropTypes.shape({
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.number.isRequired,
+        kind: PropTypes.string.isRequired,
+      })
+    ),
+  }),
+};
